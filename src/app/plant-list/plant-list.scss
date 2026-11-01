@@ -1,0 +1,11 @@
+.table th,
+.table td {
+  vertical-align: middle; // Alinea verticalmente el contenido de las celdas al medio
+}
+
+.plant-image {
+  display: block; //
+  width: 100px;
+  height: 100px;
+  object-fit: contain; //ajusta la imagen dentro del contenedor sin distorsionarla
+}

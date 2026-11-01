@@ -1,0 +1,32 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Imagen</th>
+      <th scope="col">Nombre Cientifico</th>
+      <th scope="col">Nombre Vulgar</th>
+      <th scope="col">Clasificacion</th>
+      <th scope="col">Epoca de Floracion</th>
+      <th scope="col">Origen</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (planta of plantas; track planta.id) {
+      <tr>
+        <th scope="row">{{ planta.id }}</th>
+        <td>
+          <img
+            [src]="planta.imagen"
+            class="plant-image"
+            [alt]="'Imagen de ' + (planta.nombreCientifico || planta.nombreVulgar)"
+          >
+        </td>
+        <td>{{ planta.nombreCientifico }}</td>
+        <td>{{ planta.nombreVulgar }}</td>
+        <td>{{ planta.clasificacion }}</td>
+        <td>{{ planta.epocaFloracion }}</td>
+        <td>{{ planta.origen }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
