@@ -25,7 +25,7 @@
         <td>{{ planta.nombreVulgar }}</td>
         <td>{{ planta.clasificacion }}</td>
         <td>{{ planta.epocaFloracion }}</td>
-        <td>{{ planta.origen }}</td>
+        <td>{{ planta.origen?.region }}<br>{{ planta.origen?.clima }}</td>
       </tr>
     }
   </tbody>
