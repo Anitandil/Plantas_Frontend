@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+.nav-tabs .nav-link {
+  color: #42633a;
+}
+
+.nav-tabs .nav-link.active {
+  color: #2f6128;
+  font-weight: 600;
+}
+
+.search-panel {
+  padding: 1rem;
+  border: 1px solid #dce7d7;
+  border-radius: 0 0 0.75rem 0.75rem;
+  background-color: #f7faf5;
+  box-shadow: 0 0.25rem 0.75rem rgb(39 75 29 / 8%);
+}
+
+.search-panel__heading h2 {
+  margin-bottom: 0.25rem;
+  color: #315b2a;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.search-panel__heading p {
+  margin-bottom: 1rem;
+  color: #687564;
+  font-size: 0.875rem;
+}
+
+.form-label {
+  margin-bottom: 0.35rem;
+  color: #364333;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #79a96c;
+  box-shadow: 0 0 0 0.2rem rgb(72 125 57 / 18%);
+}
+
+.btn-primary {
+  border-color: #040e01;
+  background-color: #577e4c;
+}
+
+.btn-primary:hover {
+  border-color: #416936;
+  background-color: #426837;
+}

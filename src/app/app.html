@@ -1,58 +1,45 @@
 <div class="container">
-  <div class="row align-items-start">
-    <div class="col-2  bg-light text-dark">
-        <img src="th.jpg" class="logo img-fluid" alt="Logotipo relacionado con plantas, mostrado en el encabezado del sitio.">
-    </div>
-    <div class="col bg-success text-white">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+  <div class="row encabezado">
+    <div class="col-2"></div>
+    <div class="col d-flex align-items-end">
+      <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
     </div>
   </div>
-</nav>
-    </div>
-  </div>
-  <div class="row">
+
+  <div class="row contenido">
     <div class="col-3">
-      Busqueda
+      <vista-busqueda
+        [vista]="vista"
+        (vistaCambiada)="vista = $event"
+        (filtrosCambiados)="filtros = $event">
+      </vista-busqueda>
     </div>
     <div class="col-9">
-      <lista-plantas></lista-plantas>
+      <vista-resultados [vista]="vista" [filtros]="filtros"></vista-resultados>
     </div>
   </div>
-  <div class="row align-items-end">
-  
-    <footer class="bg-success text-white text-center p-3">{{anio()}}</footer>
-  
+
+  <div class="row align-items-end my-4">
+    <footer class="footer text-center p-3">
+      <p class="text-footer">Tecnologia Web - TUARI - UNCPBA</p>
+      {{anio()}}
+    </footer>
   </div>
 </div>

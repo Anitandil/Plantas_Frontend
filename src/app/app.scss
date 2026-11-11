@@ -1,0 +1,25 @@
+.encabezado {
+  background-image: url('/encabezado.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 180px;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  background-image: url('/foo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 140px;}
+
+.text-footer {
+  font-size: 1.1rem;
+}
+
+.contenido {
+  background-color: #c0dda9;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

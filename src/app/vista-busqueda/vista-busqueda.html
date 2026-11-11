@@ -1,0 +1,57 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item" [class.active]="vista === 'plantas'">
+    <a class="nav-link" (click)="cambiar('plantas')">Plantas</a>
+  </li>
+  <li class="nav-item" [class.active]="vista === 'origenes'">
+    <a class="nav-link" (click)="cambiar('origenes')">Orígenes</a>
+  </li>
+</ul>
+
+<div class="mt-3 d-flex flex-column gap-2">
+  @if (vista === 'plantas') {
+    <label class="form-label">Nombre científico</label>
+    <input placeholder="Nombre científico" class="form-control" [(ngModel)]="filtros.nombreCientifico">
+
+    <label class="form-label">Nombre vulgar</label>
+    <input placeholder="Nombre vulgar" class="form-control" [(ngModel)]="filtros.nombreVulgar">
+
+    <label class="form-label">Clasificación</label>
+    <select class="form-select" [(ngModel)]="filtros.clasificacion">
+      <option value="">Todas</option>
+      <option value="Arbol">Arbol</option>
+      <option value="Arbusto">Arbusto</option>
+      <option value="Mata">Mata</option>
+      <option value="Hierba">Hierba</option>
+    </select>
+
+    <div class="d-flex gap-2">
+      <div class="flex-fill">
+        <label class="form-label">Ordenar por</label>
+        <select class="form-select" [(ngModel)]="filtros.sortBy">
+          <option value="id">ID</option>
+          <option value="nombreCientifico">Nombre Científico</option>
+          <option value="nombreVulgar">Nombre Vulgar</option>
+          <option value="clasificacion">Clasificación</option>
+        </select>
+      </div>
+      <div class="flex-fill">
+        <label class="form-label">Orden</label>
+        <select class="form-select" [(ngModel)]="filtros.order">
+          <option value="asc">Ascendente</option>
+          <option value="desc">Descendente</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-3">
+
+    <button class="btn btn-primary w-100" (click)="buscar()">Buscar</button>
+    <button class="btn btn-outline-secondary w-100" (click)="limpiar()">Limpiar</button>
+    <button class="btn btn-success w-100" (click)="crearNuevo()">+ Agregar Planta</button>
+  } @else {
+    <p class="text-muted">Desplegable de orígenes (pendiente).</p>
+    <button class="btn btn-success w-100 mb-2">+ Nuevo Origen</button>
+    <button class="btn btn-primary w-100 mb-2">Modificar</button>
+    <button class="btn btn-danger w-100">Eliminar</button>
+  }
+</div>

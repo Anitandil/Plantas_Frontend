@@ -1,3 +1,15 @@
+.table-scroll {
+  max-height: 65vh;
+  overflow: auto;
+}
+
+.table-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #f8f9fa;
+}
+
 .table th,
 .table td {
   vertical-align: middle; // Alinea verticalmente el contenido de las celdas al medio
@@ -5,7 +17,18 @@
 
 .plant-image {
   display: block; //
-  width: 100px;
-  height: 100px;
+  width: 55px;
+  height: 55px;
   object-fit: contain; //ajusta la imagen dentro del contenedor sin distorsionarla
+}
+
+.tabla-plantas {
+  --bs-table-bg: #fff;
+  font-size: 0.8rem;
+}
+
+.tabla-plantas th,
+.tabla-plantas td {
+  padding: 0.25rem 0.5rem;
+  line-height: 1.1;
 }
