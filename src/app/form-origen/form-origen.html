@@ -1,0 +1,55 @@
+<form #formOrigen="ngForm" (ngSubmit)="crear()" novalidate>
+  <div class="mb-3">
+    <label for="region" class="form-label">Región</label>
+    <select
+      id="region"
+      name="region"
+      class="form-select"
+      [(ngModel)]="nuevoOrigen.region"
+      #region="ngModel"
+      required
+    >
+      <option value="" disabled>Seleccioná una región</option>
+      <option value="América del Norte">América del Norte</option>
+      <option value="América Central">América Central</option>
+      <option value="América del Sur">América del Sur</option>
+      <option value="África">África</option>
+      <option value="Asia">Asia</option>
+      <option value="Europa">Europa</option>
+      <option value="Oceanía">Oceanía</option>
+      <option value="Antártida">Antártida</option>
+      <option value="Patagonia">Patagonia</option>
+      <option value="Región Pampeana">Región Pampeana</option>
+      <option value="Litoral">Litoral</option>
+      <option value="Cuyo">Cuyo</option>
+    </select>
+    @if (region.invalid && (region.dirty || region.touched)) {
+      <div class="text-danger">Ingresá una región.</div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="clima" class="form-label">Clima</label>
+<select
+  id="clima"
+  name="clima"
+  class="form-select"
+  [(ngModel)]="nuevoOrigen.clima"
+  required
+>
+  <option value="" disabled>Seleccioná un clima</option>
+  <option value="Tropical">Tropical</option>
+  <option value="Subtropical">Subtropical</option>
+  <option value="Templado">Templado</option>
+  <option value="Frio">Frio</option>
+  <option value="Arido">Arido</option>
+  <option value="Semiárido">Semiárido</option>
+  <option value="Polar">Polar</option>
+</select>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="formOrigen.invalid">
+    Guardar
+  </button>
+  <a routerLink="/origenes" class="btn btn-outline-secondary ms-2">Cancelar</a>
+</form>

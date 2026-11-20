@@ -1,19 +1,16 @@
 <ul class="nav nav-tabs">
-  <li class="nav-item" [class.active]="vista === 'plantas'">
-    <a class="nav-link" (click)="cambiar('plantas')">Plantas</a>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/plantas" routerLinkActive="active">Plantas</a>
   </li>
-  <li class="nav-item" [class.active]="vista === 'origenes'">
-    <a class="nav-link" (click)="cambiar('origenes')">Orígenes</a>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/origenes" routerLinkActive="active">Orígenes</a>
   </li>
 </ul>
 
 <div class="mt-3 d-flex flex-column gap-2">
-  @if (vista === 'plantas') {
-    <label class="form-label">Nombre científico</label>
-    <input placeholder="Nombre científico" class="form-control" [(ngModel)]="filtros.nombreCientifico">
-
-    <label class="form-label">Nombre vulgar</label>
-    <input placeholder="Nombre vulgar" class="form-control" [(ngModel)]="filtros.nombreVulgar">
+  @if (esVistaPlantas) {
+    <label class="form-label">Nombre</label>
+    <input placeholder="Buscar por nombre..." class="form-control" [(ngModel)]="filtros.nombre">
 
     <label class="form-label">Clasificación</label>
     <select class="form-select" [(ngModel)]="filtros.clasificacion">
@@ -49,9 +46,9 @@
     <button class="btn btn-outline-secondary w-100" (click)="limpiar()">Limpiar</button>
     <button class="btn btn-success w-100" (click)="crearNuevo()">+ Agregar Planta</button>
   } @else {
-    <p class="text-muted">Desplegable de orígenes (pendiente).</p>
-    <button class="btn btn-success w-100 mb-2">+ Nuevo Origen</button>
-    <button class="btn btn-primary w-100 mb-2">Modificar</button>
-    <button class="btn btn-danger w-100">Eliminar</button>
+    <hr class="my-3">
+    <a class="btn btn-success w-100 mb-2" routerLink="/origenes/crear">
+      + Nuevo Origen
+    </a>
   }
 </div>

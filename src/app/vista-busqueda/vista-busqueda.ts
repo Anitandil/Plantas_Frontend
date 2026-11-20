@@ -1,44 +1,40 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'vista-busqueda',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './vista-busqueda.html',
   styleUrl: './vista-busqueda.scss'
 })
 export class VistaBusqueda {
-  @Input() vista = 'plantas';
-  @Output() vistaCambiada = new EventEmitter<'plantas' | 'origenes'>();
-  @Output() filtrosCambiados = new EventEmitter<any>();
+  private readonly router = inject(Router);
+
+  get esVistaPlantas(): boolean {
+    return this.router.url.startsWith('/plantas');
+  }
 
   filtros: any = {
-    nombreCientifico: '',
-    nombreVulgar: '',
+    nombre: '',
     clasificacion: '',
     sortBy: 'id',
     order: 'asc'
   };
 
-  cambiar(vista: 'plantas' | 'origenes') {
-    this.vista = vista;
-    this.vistaCambiada.emit(vista);
-  }
-
   buscar() {
-    this.filtrosCambiados.emit(this.filtros);
+    this.router.navigate(['/plantas'], { queryParams: this.filtros });
   }
 
   limpiar() {
     this.filtros = {
-      nombreCientifico: '',
-      nombreVulgar: '',
+      nombre: '',
       clasificacion: '',
       sortBy: 'id',
       order: 'asc'
     };
-    this.filtrosCambiados.emit(this.filtros);
+    this.buscar();
   }
 
   crearNuevo() {

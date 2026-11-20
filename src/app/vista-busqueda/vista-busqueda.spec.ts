@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { VistaBusqueda } from './vista-busqueda';
 
 describe('VistaBusqueda', () => {
@@ -8,6 +9,7 @@ describe('VistaBusqueda', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [VistaBusqueda],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VistaBusqueda);

@@ -25,14 +25,10 @@
 
   <div class="row contenido">
     <div class="col-3">
-      <vista-busqueda
-        [vista]="vista"
-        (vistaCambiada)="vista = $event"
-        (filtrosCambiados)="filtros = $event">
-      </vista-busqueda>
+      <vista-busqueda></vista-busqueda>
     </div>
     <div class="col-9">
-      <vista-resultados [vista]="vista" [filtros]="filtros"></vista-resultados>
+      <router-outlet></router-outlet>
     </div>
   </div>
 
