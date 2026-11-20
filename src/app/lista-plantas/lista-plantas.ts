@@ -26,4 +26,17 @@ export class ListaPlantas implements OnInit, OnChanges {
       this.plantas.set(plantas);
     });
   }
+
+  editar(id: number) {
+    // Lógica para editar la planta
+  }
+
+  eliminar(id: number) {
+    if (confirm('¿Seguro que querés eliminar esta planta?')) {
+      this.servicioDatosPlanta.delete(id).subscribe({
+        next: () => this.buscar(),
+        error: (err) => console.error('Error al eliminar', err),
+      });
+    }
+  }
 }

@@ -9,6 +9,7 @@
         <th scope="col">Clasificacion</th>
         <th scope="col">Epoca de Floracion</th>
         <th scope="col">Origen</th>
+        <th scope="col" class="text-center">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,9 @@
           <td>{{ planta.clasificacion }}</td>
           <td>{{ planta.epocaFloracion }}</td>
           <td>{{ planta.origen?.region }}<br>{{ planta.origen?.clima }}</td>
+          <td class="text-center">
+            <button class="btn  btn-sm me-1" title="Editar" aria-label="Editar" (click)="editar(planta.id)">✏️</button>
+            <button class="btn  btn-sm" title="Eliminar" aria-label="Eliminar" (click)="eliminar(planta.id)">🗑️</button>         </td>
         </tr>
       }
     </tbody>
