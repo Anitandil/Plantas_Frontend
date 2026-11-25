@@ -6,7 +6,7 @@ import { Origen, OrigenDatos } from './models/origen';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceDatosOrigen {
-  private readonly apiUrl = 'http://localhost:3000/origen';
+  private readonly apiUrl = 'https://plantas-backend-al2l.onrender.com/origen';
 
   constructor(private http: HttpClient) {}
 

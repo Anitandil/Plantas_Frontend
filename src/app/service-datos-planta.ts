@@ -22,7 +22,7 @@ export interface PaginaPlantas {
 
 @Injectable({ providedIn: 'root' })
 export class ServicioDatosPlanta {
-  private readonly apiUrl = 'http://localhost:3000/planta';
+  private readonly apiUrl = 'https://plantas-backend-al2l.onrender.com/planta';
 
   constructor(private http: HttpClient) {}
 

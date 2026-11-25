@@ -32,7 +32,7 @@ describe('ServiceDatosOrigen', () => {
       result = items;
     });
     httpTestingController
-      .expectOne('http://localhost:3000/origen')
+      .expectOne('https://plantas-backend-al2l.onrender.com/origen')
       .flush(origenes);
 
     expect(result?.map((origen) => origen.id)).toEqual([2, 3, 1]);

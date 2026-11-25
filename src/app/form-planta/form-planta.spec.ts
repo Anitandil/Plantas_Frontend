@@ -40,7 +40,7 @@ describe('FormPlanta', () => {
 
   it('requires a non-blank scientific name', async () => {
     fixture.detectChanges();
-    httpTestingController.expectOne('http://localhost:3000/origen').flush([]);
+    httpTestingController.expectOne('https://plantas-backend-al2l.onrender.com/origen').flush([]);
     await fixture.whenStable();
 
     const nombreCientifico = fixture.nativeElement.querySelector(
@@ -60,9 +60,9 @@ describe('FormPlanta', () => {
     fixture.detectChanges();
 
     httpTestingController
-      .expectOne('http://localhost:3000/origen')
+      .expectOne('https://plantas-backend-al2l.onrender.com/origen')
       .flush([{ id: 2, region: 'Patagonia', clima: 'Templado' }]);
-    httpTestingController.expectOne('http://localhost:3000/planta/7').flush({
+    httpTestingController.expectOne('https://plantas-backend-al2l.onrender.com/planta/7').flush({
       id: 7,
       nombreCientifico: 'Austrocedrus chilensis',
       nombreVulgar: 'Ciprés de la cordillera',
@@ -83,7 +83,7 @@ describe('FormPlanta', () => {
 
   it('shows the duplicate error again after each create attempt', () => {
     fixture.detectChanges();
-    httpTestingController.expectOne('http://localhost:3000/origen').flush([]);
+    httpTestingController.expectOne('https://plantas-backend-al2l.onrender.com/origen').flush([]);
 
     component.nuevoPlanta = {
       nombreCientifico: 'Rosa canina',
@@ -96,7 +96,7 @@ describe('FormPlanta', () => {
 
     component.guardar();
     httpTestingController
-      .expectOne('http://localhost:3000/planta')
+      .expectOne('https://plantas-backend-al2l.onrender.com/planta')
       .flush(
         { message: 'Ya existe una planta con esos nombres.' },
         { status: 409, statusText: 'Conflict' },
@@ -110,7 +110,7 @@ describe('FormPlanta', () => {
 
     component.guardar();
     httpTestingController
-      .expectOne('http://localhost:3000/planta')
+      .expectOne('https://plantas-backend-al2l.onrender.com/planta')
       .flush(
         { message: 'Ya existe una planta con esos nombres.' },
         { status: 409, statusText: 'Conflict' },
