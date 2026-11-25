@@ -12,3 +12,5 @@ export interface Planta {
   origenId: number;
   origen?: Origen;
 }
+
+export type PlantaDatos = Omit<Planta, 'id' | 'origen'>;

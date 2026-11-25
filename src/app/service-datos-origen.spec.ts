@@ -20,17 +20,22 @@ describe('ServiceDatosOrigen', () => {
     expect(service).toBeTruthy();
   });
 
-  it('returns the origins from the API', () => {
-    const origen: Origen = { id: 1, region: 'Sierras', clima: 'Templado' };
+  it('returns origins sorted alphabetically by region', () => {
+    const origenes: Origen[] = [
+      { id: 1, region: 'Patagonia', clima: 'Frío' },
+      { id: 2, region: 'África', clima: 'Tropical' },
+      { id: 3, region: 'América del Sur', clima: 'Templado' },
+    ];
     let result: Origen[] | undefined;
 
-    service.getAll().subscribe((origenes) => {
-      result = origenes;
+    service.getAll().subscribe((items) => {
+      result = items;
     });
     httpTestingController
       .expectOne('http://localhost:3000/origen')
-      .flush([origen]);
+      .flush(origenes);
 
-    expect(result).toEqual([origen]);
+    expect(result?.map((origen) => origen.id)).toEqual([2, 3, 1]);
+    expect(origenes.map((origen) => origen.id)).toEqual([1, 2, 3]);
   });
 });

@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Origen } from '../models/origen';
 import { ServiceDatosOrigen } from '../service-datos-origen';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lista-origenes',
@@ -12,9 +13,16 @@ import { ServiceDatosOrigen } from '../service-datos-origen';
 export class ListaOrigenes implements OnInit {
   origenes = signal<Origen[]>([]);
 
-  constructor(private datosOrigen: ServiceDatosOrigen) {}
+  constructor(
+  private datosOrigen: ServiceDatosOrigen,
+  private router: Router
+) {}
 
   ngOnInit(): void {
+    this.cargarOrigenes();
+  }
+
+  private cargarOrigenes(): void {
     this.datosOrigen.getAll().subscribe({
       next: (origenes: Origen[]) => {
         this.origenes.set(origenes);
@@ -26,17 +34,14 @@ export class ListaOrigenes implements OnInit {
   }
 
   editar(id: number) {
-    // Lógica para editar el origen
+    this.router.navigate(['/origenes/editar', id]);
   }
 
   eliminar(id: number) {
     if (confirm('¿Seguro que querés eliminar este origen?')) {
       this.datosOrigen.delete(id).subscribe({
         next: () => {
-          // Actualizar la lista de orígenes después de eliminar
-          this.datosOrigen.getAll().subscribe((origenes) => {
-            this.origenes.set(origenes);
-          });
+          this.cargarOrigenes();
         },
         error: (err) => {
           console.error('Error al eliminar el origen:', err);

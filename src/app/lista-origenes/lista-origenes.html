@@ -1,29 +1,31 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Región</th>
-      <th scope="col">Clima</th>
-      <th scope="col" class="text-center">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    @if (origenes().length) {
-      @for (o of origenes(); track o.id) {
+<div class="table-scroll">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Región</th>
+        <th scope="col">Clima</th>
+        <th scope="col" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (origenes().length) {
+        @for (o of origenes(); track o.id) {
+          <tr>
+            <th scope="row">{{ o.id }}</th>
+            <td>{{ o.region }}</td>
+            <td>{{ o.clima }}</td>
+            <td class="text-center">
+              <button class="btn btn-sm me-1" title="Editar" aria-label="Editar" (click)="editar(o.id)">✏️</button>
+              <button class="btn btn-sm" title="Eliminar" aria-label="Eliminar" (click)="eliminar(o.id)">🗑️</button>
+            </td>
+          </tr>
+        }
+      } @else {
         <tr>
-          <th scope="row">{{ o.id }}</th>
-          <td>{{ o.region }}</td>
-          <td>{{ o.clima }}</td>
-          <td class="text-center">
-            <button class="btn btn-sm me-1" title="Editar" aria-label="Editar" (click)="editar(o.id)">✏️</button>
-            <button class="btn btn-sm" title="Eliminar" aria-label="Eliminar" (click)="eliminar(o.id)">🗑️</button>
-          </td>
+          <td colspan="4" class="text-center text-muted">No hay orígenes cargados</td>
         </tr>
       }
-    } @else {
-      <tr>
-        <td colspan="3" class="text-center text-muted">No hay orígenes cargados</td>
-      </tr>
-    }
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

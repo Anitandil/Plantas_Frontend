@@ -1,0 +1,38 @@
+<section>
+  <h1 class="h3 mb-4">Resumen del catálogo</h1>
+
+  @if (cargando()) {
+    <p role="status">Cargando resumen...</p>
+  } @else if (error()) {
+    <p class="alert alert-danger" role="alert">{{ error() }}</p>
+  } @else if (datos(); as resumen) {
+    <div class="row g-3 mb-4">
+      <div class="col-sm-6">
+        <article class="card h-100">
+          <div class="card-body">
+            <h2 class="h6 card-title">Plantas registradas</h2>
+            <p class="display-6 mb-0">{{ resumen.totalPlantas }}</p>
+          </div>
+        </article>
+      </div>
+      <div class="col-sm-6">
+        <article class="card h-100">
+          <div class="card-body">
+            <h2 class="h6 card-title">Orígenes registrados</h2>
+            <p class="display-6 mb-0">{{ resumen.totalOrigenes }}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <h2 class="h5">Plantas por clasificación</h2>
+    <ul class="list-group">
+      @for (item of resumen.clasificaciones; track item.nombre) {
+        <li class="list-group-item d-flex justify-content-between">
+          <span>{{ item.nombre === 'Arbol' ? 'Árbol' : item.nombre }}</span>
+          <span class="badge bg-success rounded-pill">{{ item.cantidad }} ({{ item.porcentaje }}%)</span>
+        </li>
+      }
+    </ul>
+  }
+</section>

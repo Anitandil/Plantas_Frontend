@@ -1,0 +1,22 @@
+.encabezado {
+  background-image: url('/encabezado.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 180px;
+  margin-bottom: 1rem;
+}
+
+.navbar-light .navbar-nav .nav-button {
+  color: #212529;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.navbar-light .navbar-nav .nav-button:hover,
+.navbar-light .navbar-nav .nav-button:focus-visible {
+  color: #212529;
+  background-color: rgba(25, 135, 84, 0.16);
+}

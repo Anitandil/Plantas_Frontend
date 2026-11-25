@@ -13,26 +13,74 @@
       </tr>
     </thead>
     <tbody>
-      @for (planta of plantas(); track planta.id) {
+      @if (cargando()) {
         <tr>
-          <th scope="row">{{ planta.id }}</th>
-          <td>
-            <img
-              [src]="planta.imagen"
-              class="plant-image"
-              [alt]="'Imagen de ' + (planta.nombreCientifico || planta.nombreVulgar)"
-            >
-          </td>
-          <td>{{ planta.nombreCientifico }}</td>
-          <td>{{ planta.nombreVulgar }}</td>
-          <td>{{ planta.clasificacion }}</td>
-          <td>{{ planta.epocaFloracion }}</td>
-          <td>{{ planta.origen?.region }}<br>{{ planta.origen?.clima }}</td>
-          <td class="text-center">
-            <button class="btn  btn-sm me-1" title="Editar" aria-label="Editar" (click)="editar(planta.id)">✏️</button>
-            <button class="btn  btn-sm" title="Eliminar" aria-label="Eliminar" (click)="eliminar(planta.id)">🗑️</button>         </td>
+          <td colspan="8" class="text-center text-muted">Cargando plantas...</td>
+        </tr>
+      } @else if (error()) {
+        <tr>
+          <td colspan="8" class="text-center text-danger" role="alert">{{ error() }}</td>
+        </tr>
+      } @else if (plantas().length > 0) {
+        @for (planta of plantas(); track planta.id) {
+          <tr>
+            <th scope="row">{{ planta.id }}</th>
+            <td>
+              @if (planta.imagen) {
+                <img
+                  [src]="planta.imagen"
+                  class="plant-image"
+                  [alt]="'Imagen de ' + (planta.nombreCientifico || planta.nombreVulgar)"
+                >
+              } @else {
+                <span class="plant-image plant-image-placeholder" role="img" aria-label="Sin imagen">
+                  Sin imagen
+                </span>
+              }
+            </td>
+            <td>{{ planta.nombreCientifico }}</td>
+            <td>{{ planta.nombreVulgar }}</td>
+            <td>{{ planta.clasificacion }}</td>
+            <td>{{ planta.epocaFloracion }}</td>
+            <td>{{ planta.origen?.region }}<br>{{ planta.origen?.clima }}</td>
+            <td class="text-center">
+              <button class="btn btn-sm me-1" title="Editar" aria-label="Editar" (click)="editar(planta.id)">✏️</button>
+              <button class="btn btn-sm" title="Eliminar" aria-label="Eliminar" (click)="eliminar(planta.id)">🗑️</button>
+            </td>
+          </tr>
+        }
+      } @else {
+        <tr>
+          <td colspan="8" class="text-center text-muted">No hay plantas para mostrar</td>
         </tr>
       }
     </tbody>
   </table>
 </div>
+
+@if (pagina(); as paginaActual) {
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3">
+    @if (paginaActual.total > 0) {
+      <span>{{ paginaActual.total }} plantas · Página {{ paginaActual.page }} de {{ paginaActual.totalPages }}</span>
+    } @else {
+      <span>0 plantas</span>
+    }
+
+    @if (paginaActual.totalPages > 1) {
+      <div class="d-flex gap-2">
+        <button
+          type="button"
+          class="btn btn-outline-success btn-sm"
+          [disabled]="paginaActual.page <= 1"
+          (click)="cambiarPagina(paginaActual.page - 1)"
+        >Anterior</button>
+        <button
+          type="button"
+          class="btn btn-outline-success btn-sm"
+          [disabled]="paginaActual.page >= paginaActual.totalPages"
+          (click)="cambiarPagina(paginaActual.page + 1)"
+        >Siguiente</button>
+      </div>
+    }
+  </div>
+}

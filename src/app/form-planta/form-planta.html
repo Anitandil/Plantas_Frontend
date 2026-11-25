@@ -1,0 +1,111 @@
+<h1 class="h3 mb-4">{{ idPlanta ? 'Editar planta' : 'Crear planta' }}</h1>
+
+<form #formPlanta="ngForm" (ngSubmit)="guardar()" novalidate>
+  <div class="mb-3">
+    <label for="nombreCientifico" class="form-label">Nombre científico</label>
+    <input
+      id="nombreCientifico"
+      name="nombreCientifico"
+      class="form-control"
+      [(ngModel)]="nuevoPlanta.nombreCientifico"
+      #nombreCientifico="ngModel"
+      required
+      pattern=".*\S.*"
+      maxlength="150"
+    >
+    @if (nombreCientifico.invalid && (nombreCientifico.dirty || nombreCientifico.touched)) {
+      <div class="text-danger">Ingresá el nombre científico.</div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="nombreVulgar" class="form-label">Nombre vulgar</label>
+    <input
+      id="nombreVulgar"
+      name="nombreVulgar"
+      class="form-control"
+      [(ngModel)]="nuevoPlanta.nombreVulgar"
+      #nombreVulgar="ngModel"
+      required
+      maxlength="150"
+    >
+    @if (nombreVulgar.invalid && (nombreVulgar.dirty || nombreVulgar.touched)) {
+      <div class="text-danger">Ingresá el nombre vulgar.</div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="clasificacion" class="form-label">Clasificación</label>
+    <select
+      id="clasificacion"
+      name="clasificacion"
+      class="form-select"
+      [(ngModel)]="nuevoPlanta.clasificacion"
+      #clasificacion="ngModel"
+      required
+    >
+      <option value="" disabled>Seleccioná una clasificación</option>
+      @for (opcion of clasificaciones; track opcion) {
+        <option [ngValue]="opcion">{{ opcion }}</option>
+      }
+    </select>
+    @if (clasificacion.invalid && (clasificacion.dirty || clasificacion.touched)) {
+      <div class="text-danger">Seleccioná una clasificación.</div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="epocaFloracion" class="form-label">Época de floración</label>
+    <input
+      id="epocaFloracion"
+      name="epocaFloracion"
+      class="form-control"
+      [(ngModel)]="nuevoPlanta.epocaFloracion"
+      maxlength="100"
+    >
+  </div>
+
+  <div class="mb-3">
+    <label for="imagen" class="form-label">Imagen (URL)</label>
+    <input
+      id="imagen"
+      name="imagen"
+      class="form-control"
+      [(ngModel)]="nuevoPlanta.imagen"
+      maxlength="2048"
+    >
+  </div>
+
+  <div class="mb-3">
+    <label for="origenId" class="form-label">Origen</label>
+    <select
+      id="origenId"
+      name="origenId"
+      class="form-select"
+      [(ngModel)]="nuevoPlanta.origenId"
+      #origenId="ngModel"
+      required
+    >
+      <option [ngValue]="null" disabled>Seleccioná un origen</option>
+      @for (origen of origenes; track origen.id) {
+        <option [ngValue]="origen.id">{{ origen.region }} - {{ origen.clima }}</option>
+      }
+    </select>
+    @if (origenId.invalid && (origenId.dirty || origenId.touched)) {
+      <div class="text-danger">Seleccioná un origen.</div>
+    }
+  </div>
+
+  @if (mensajeError) {
+    <p class="alert alert-danger" role="alert">{{ mensajeError }}</p>
+  }
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="formPlanta.invalid || guardando || (idPlanta !== undefined && !formPlanta.dirty)"
+  >
+    {{ guardando ? 'Guardando...' : 'Guardar' }}
+  </button>
+  <a routerLink="/plantas" class="btn btn-outline-secondary ms-2">Cancelar</a>
+</form>

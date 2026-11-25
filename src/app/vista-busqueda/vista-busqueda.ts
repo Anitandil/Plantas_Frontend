@@ -16,15 +16,21 @@ export class VistaBusqueda {
     return this.router.url.startsWith('/plantas');
   }
 
+  get esVistaOrigenes(): boolean {
+    return this.router.url.startsWith('/origenes');
+  }
+
   filtros: any = {
     nombre: '',
     clasificacion: '',
     sortBy: 'id',
-    order: 'asc'
+    order: 'desc'
   };
 
   buscar() {
-    this.router.navigate(['/plantas'], { queryParams: this.filtros });
+    this.router.navigate(['/plantas'], {
+      queryParams: { ...this.filtros, page: 1 },
+    });
   }
 
   limpiar() {
@@ -32,12 +38,13 @@ export class VistaBusqueda {
       nombre: '',
       clasificacion: '',
       sortBy: 'id',
-      order: 'asc'
+      order: 'desc',
+      page: 1,
     };
     this.buscar();
   }
 
   crearNuevo() {
-    // acá conectás después el formulario de alta
+    this.router.navigate(['/plantas/crear']);
   }
 }

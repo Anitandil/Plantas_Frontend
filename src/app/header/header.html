@@ -1,0 +1,33 @@
+<div class="row encabezado">
+    <div class="col d-flex align-items-end">
+      <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            aria-controls="navbarSupportedContent"
+            [attr.aria-expanded]="menuAbierto"
+            aria-label="Mostrar navegación"
+            (click)="alternarMenu()"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" [class.show]="menuAbierto">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2">
+              <li class="nav-item">
+                <a class="nav-link nav-button" routerLink="/plantas" (click)="cerrarMenu()">Plantas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-button" routerLink="/origenes" (click)="cerrarMenu()">Orígenes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-button" routerLink="/resumen" (click)="cerrarMenu()">Resumen</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-button" routerLink="/acerca-del-proyecto" (click)="cerrarMenu()">Acerca del proyecto</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>

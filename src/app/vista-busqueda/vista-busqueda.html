@@ -43,9 +43,9 @@
     <hr class="my-3">
 
     <button class="btn btn-primary w-100" (click)="buscar()">Buscar</button>
-    <button class="btn btn-outline-secondary w-100" (click)="limpiar()">Limpiar</button>
+    <button class="btn btn-limpiar w-100" (click)="limpiar()">Limpiar</button>
     <button class="btn btn-success w-100" (click)="crearNuevo()">+ Agregar Planta</button>
-  } @else {
+  } @else if (esVistaOrigenes) {
     <hr class="my-3">
     <a class="btn btn-success w-100 mb-2" routerLink="/origenes/crear">
       + Nuevo Origen

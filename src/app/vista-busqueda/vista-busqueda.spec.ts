@@ -20,4 +20,8 @@ describe('VistaBusqueda', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('defaults to descending order', () => {
+    expect(component.filtros.order).toBe('desc');
+  });
 });

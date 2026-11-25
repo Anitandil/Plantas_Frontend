@@ -10,15 +10,26 @@ export class ServiceDatosOrigen {
 
   constructor(private http: HttpClient) {}
 
- getAll(): Observable<Origen[]> {
-  return this.http.get<Origen[]>(this.apiUrl);
-}
+  getAll(): Observable<Origen[]> {
+    return this.http.get<Origen[]>(this.apiUrl).pipe(
+      map((origenes) =>
+        [...origenes].sort((a, b) =>
+          a.region.localeCompare(b.region, 'es', { sensitivity: 'base' }),
+        ),
+      ),
+    );
+  }
+
+  getById(id: number): Observable<Origen> {
+    return this.http.get<Origen>(`${this.apiUrl}/${id}`);
+  }
+
   create(origen: OrigenDatos): Observable<Origen> {
-    return this.http.post<{ data: Origen }>(this.apiUrl, origen).pipe(map((res) => res.data));
+    return this.http.post<Origen>(this.apiUrl, origen);
   }
 
   update(id: number, origen: OrigenDatos): Observable<Origen> {
-    return this.http.patch<{ data: Origen }>(`${this.apiUrl}/${id}`, origen).pipe(map((res) => res.data));
+    return this.http.patch<Origen>(`${this.apiUrl}/${id}`, origen);
   }
 
   delete(id: number): Observable<void> {
