@@ -25,7 +25,7 @@ describe('Resumen', () => {
     fixture.detectChanges();
 
     httpTestingController
-      .expectOne((req) => req.url === 'https://plantas-backend-al2l.onrender.com/planta')
+      .expectOne((req) => req.url === 'http://localhost:3000/planta')
       .flush({
         data: [
           {
@@ -49,7 +49,7 @@ describe('Resumen', () => {
         totalPages: 1,
       });
     httpTestingController
-      .expectOne('https://plantas-backend-al2l.onrender.com/origen')
+      .expectOne('http://localhost:3000/origen')
       .flush([{ id: 1, region: 'Europa', clima: 'Templado' }]);
 
     await fixture.whenStable();

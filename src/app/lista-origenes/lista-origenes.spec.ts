@@ -26,7 +26,7 @@ describe('ListaOrigenes', () => {
   it('renders origins returned by the API', async () => {
     fixture.detectChanges();
     httpTestingController
-      .expectOne('https://plantas-backend-al2l.onrender.com/origen')
+      .expectOne('http://localhost:3000/origen')
       .flush([{ id: 1, region: 'Sierras', clima: 'Templado' }]);
     await fixture.whenStable();
     fixture.detectChanges();

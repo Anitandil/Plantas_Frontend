@@ -36,7 +36,7 @@ describe('ListaPlantas', () => {
     httpTestingController
       .expectOne(
         (req) =>
-          req.url === 'https://plantas-backend-al2l.onrender.com/planta' &&
+          req.url === 'http://localhost:3000/planta' &&
           req.params.get('nombre') === 'Monstera' &&
           req.params.get('clasificacion') === 'Mata' &&
           req.params.get('page') === '1' &&

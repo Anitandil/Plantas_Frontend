@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, expand, reduce } from 'rxjs';
+import { environment } from '../environments/environment';
 import { Planta, PlantaDatos } from './models/planta';
 
 export interface ParametrosPlanta {
@@ -22,7 +23,7 @@ export interface PaginaPlantas {
 
 @Injectable({ providedIn: 'root' })
 export class ServicioDatosPlanta {
-  private readonly apiUrl = 'https://plantas-backend-al2l.onrender.com/planta';
+  private readonly apiUrl = `${environment.apiUrl}/planta`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { environment } from '../environments/environment';
 import { Origen, OrigenDatos } from './models/origen';
 
 
 @Injectable({ providedIn: 'root' })
 export class ServiceDatosOrigen {
-  private readonly apiUrl = 'https://plantas-backend-al2l.onrender.com/origen';
+  private readonly apiUrl = `${environment.apiUrl}/origen`;
 
   constructor(private http: HttpClient) {}
 

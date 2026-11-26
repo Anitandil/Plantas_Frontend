@@ -34,7 +34,7 @@ describe('DatosPlanta', () => {
     });
 
     httpTestingController
-      .expectOne('https://plantas-backend-al2l.onrender.com/planta/1')
+      .expectOne('http://localhost:3000/planta/1')
       .flush(planta);
   });
 
@@ -62,7 +62,7 @@ describe('DatosPlanta', () => {
 
     const request = httpTestingController.expectOne(
       (req) =>
-        req.url === 'https://plantas-backend-al2l.onrender.com/planta' &&
+        req.url === 'http://localhost:3000/planta' &&
         req.params.get('nombre') === 'rosa' &&
         req.params.get('clasificacion') === 'Arbusto' &&
         req.params.get('sortBy') === 'id' &&
@@ -112,13 +112,13 @@ describe('DatosPlanta', () => {
     };
 
     service.create(datos).subscribe();
-    const crear = httpTestingController.expectOne('https://plantas-backend-al2l.onrender.com/planta');
+    const crear = httpTestingController.expectOne('http://localhost:3000/planta');
     expect(crear.request.method).toBe('POST');
     expect(crear.request.body).toEqual(datos);
     crear.flush({ id: 1, ...datos });
 
     service.update(1, datos).subscribe();
-    const actualizar = httpTestingController.expectOne('https://plantas-backend-al2l.onrender.com/planta/1');
+    const actualizar = httpTestingController.expectOne('http://localhost:3000/planta/1');
     expect(actualizar.request.method).toBe('PATCH');
     expect(actualizar.request.body).toEqual(datos);
     actualizar.flush({ id: 1, ...datos });
